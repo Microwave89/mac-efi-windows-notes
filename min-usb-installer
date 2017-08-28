@@ -1,0 +1,45 @@
+Very core of windows10 efiboot flash installer
+--> Note, the ESP preceding the flash installer partition is not required to contain a single file. You can easily unhide the partition and add an efi shell there named \efi\boot\bootx64.efi.
+
+Realm of efi bootmgr (\efi\boot\bootx64.efi) startup:
+!\efi\microsoft\boot\fonts\ && !\efi\microsoft\boot\bcd:
+- Hang while further displaying mac boot selection
+(!\efi\microsoft\boot\fonts\ || !\efi\microsoft\boot\resources\bootres.dll) && \efi\microsoft\boot\bcd:
+- show and hang at blackscreen
+\efi\microsoft\boot\fonts\ && \efi\microsoft\boot\resources\bootres.dll && !\efi\microsoft\boot\bcd:
+- Show error 0xc000000f that specific file bcd not found
+\efi\microsoft\boot\fonts\ && \efi\microsoft\boot\resources\bootres.dll && \efi\microsoft\boot\bcd
+- Show error 0xc000000f that device does not exist or could not be accessed
+==> at this point the bcd file could be interpreted and error display has been setup properly. The information in bcd file becomes relevant.
+
+By viewing the bcd file with a hex editor one can see that there's referred to a boot.sdi as well as a boot.wim file.
+Realm of the bcd information:
+!\boot\boot.sdi && \sources\boot.wim
+- Show error 0xc000000f that device does not exist or could not be accessed
+&& \boot\boot.sdi && !\sources\boot.wim
+- Show error 0xc000000f that device does not exist or could not be accessed
+&& \boot\boot.sdi && \sources\boot.wim
+- no error, windows install dialog should appear.
+==> Now regedit wpeutil and many other commands work in RE shell, and windows is ready to install.
+
+Upon installation in US English and location German (Switzerland) apparently some media driver is missing. Error is "A media driver your computer needs is missing"
+
+In the following one can see the message is completely misleading:
+\sources\setup.exe
+- Error message correctly states that the install.wim file is missing.
+\sources\install.wim
+- All ok, activation dialog should pop up
+
+Install.wim is now in charge of a successful continuation of the wizard. No problems including drive selection dialog.
+
+Realm of install.wim:
+- No errors. Installation just continues flawlessly.
+
+After installation Windows needs to be launched via a
+newly created EFI Boot entry.
+
+Realm of Windows 10 on internal disk:
+- No errors.
+
+Windows will reboot a few times, so you are recommended to
+have a keen eye on it in order to select EFI Boot each time.
