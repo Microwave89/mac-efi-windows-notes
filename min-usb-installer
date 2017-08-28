@@ -1,7 +1,7 @@
 #The Very Minimum USB Installation HDD
 
 NOTE: USB REMOVABLE MEDIA HAVE NOT BEEN TESTED.
-FOR A QUICK INFORMATION WHAT THE USB KEY LOOKS LIKE PLEASE SCROLL TO THE BOTTOM!
+FOR A QUICK OVERVIEW WHAT THE USB KEY MAY LOOK LIKE PLEASE SCROLL DOWN TO THE BOTTOM!
 
 Very core of windows10 efiboot flash installer
 --> Note, the ESP preceding the flash installer partition is not required to contain a single file. You can easily unhide the partition and add an efi shell there named \efi\boot\bootx64.efi.
@@ -49,6 +49,9 @@ Realm of Windows 10 on internal disk:
 Windows will reboot a few times, so you are recommended to
 have a keen eye on it in order to select EFI Boot each time.
 After that you made it!
+
+
+
 
 LAYOUT OF USB HARD DISK DRIVE FOR MAC EFI BASED WINDOWS 10 INSTALLATION:
 
