@@ -1,4 +1,7 @@
-#The Very Minimum USB Installation Key
+#The Very Minimum USB Installation HDD
+
+NOTE: USB REMOVABLE MEDIA HAVE NOT BEEN TESTED.
+FOR A QUICK INFORMATION WHAT THE USB KEY LOOKS LIKE PLEASE SCROLL TO THE BOTTOM!
 
 Very core of windows10 efiboot flash installer
 --> Note, the ESP preceding the flash installer partition is not required to contain a single file. You can easily unhide the partition and add an efi shell there named \efi\boot\bootx64.efi.
@@ -45,3 +48,23 @@ Realm of Windows 10 on internal disk:
 
 Windows will reboot a few times, so you are recommended to
 have a keen eye on it in order to select EFI Boot each time.
+After that you made it!
+
+LAYOUT OF USB HARD DISK DRIVE FOR MAC EFI BASED WINDOWS 10 INSTALLATION:
+
+/dev/disk1s1 aka /dev/sdb1 <== formatted as fat32
+- /efi/boot/bootx64.efi <== bootx64.efi is efi shell v1
+- /startup.nsh <== optional configuration of efi shell environment, behaves like autoexec.bat
+
+/dev/disk1s2 aka /dev/sdb2 <== formatted as fat32
+- /efi/boot/bootx64.efi <== efi kind bootmgr aka "bootmgfw.efi"
+- /efi/microsoft/boot/bcd
+- /efi/microsoft/boot/fonts/{some random fonts here...}
+- /efi/microsoft/boot/resources/bootres.dll
+- /boot/boot.sdi
+- /sources/boot.wim
+- /sources/setup.exe
+- /sources/install.wim
+
+Yep, I was quite puzzled what the entire Windows 10 x64 1607 Anniversary Build Installer essentially boiled down to...
+
