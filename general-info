@@ -1,0 +1,9 @@
+Really always ok for mac usb efi boot
+
+- efi\boot\bootx64.efi
+- Must be gpt formatted
+- Can then be ESP or fat32 or hfs+
+- Irrelevant whether 1st partition or not
+- Other valid path: /System/Library/CoreServices/boot.efi, ONLY boot.efi is necessary
+- No mach_kernel or any .plists needed!
+- Neither \efi\boot\loader.efi nor /system/library/coreservices/loader.efi are valid entrypoints.
